@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Control projects</title>
+
+        <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="lib/node_modules/angular-toastr/dist/angular-toastr.css">
+
+    </head>
+    <body>
+
+        <div class="global-container">
+            <div class="card login-form">
+                <div class="card-body" ng-controller="LoginController">
+                    <h3 class="card-title text-center">Log in </h3>
+                    <div class="card-text">
+                        <form name="loginForm" ng-submit="auth(user)">
+                            <div class="form-group">
+                                <label for="login">Login</label>
+                                <input type="text" class="form-control form-control-sm validate" ng-maxlength="90" name='login' id='login' ng-model="user.login" aria-describedby="loginHelp" required>
+
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="loginForm.login.$error.required">Required field!</span>
+                                <span class="help-block custom-fonts-alert" ng-show="loginForm.login.$error.maxlength">You can only enter a maximum of 90 characters!</span>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="password">Password</label>
+                                <a href="#" style="float:right;font-size:12px;">Forgot password?</a>
+                                <input type="password" class="form-control form-control-sm validate" ng-maxlength="60" name='password' id='password' ng-model="user.password" required>
+
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="loginForm.password.$error.required">Required field!</span>
+                                <span class="help-block custom-fonts-alert" ng-show="loginForm.password.$error.maxlength">You can only enter a maximum of 60 characters!</span>
+                            </div>
+                            <div class="form-group">
+                                <input  type="submit" class="btn btn-primary btn-block"
+                                        name="action" ng-disabled="loginForm.$invalid">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <!-- Libraris -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Libraris node modules -->
+    <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="lib/node_modules/angular/angular.js"></script>
+
+    <script type="text/javascript"  src="lib/node_modules/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-touch/angular-touch.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-ui-grid/ui-grid.js"></script>
+    <!--<script type="text/javascript" src="lib/node_modules/angular-toastr/dist/angular-toastr.js"></script>-->
+    <script src="lib/js/angular-toastr.js"></script>
+
+    <script type="text/javascript" src="lib/node_modules/angular-mask/src/masks.js"></script>
+    <script type="text/javascript" src="lib/node_modules/angular-input-masks/releases/angular-input-masks-standalone.js"></script>
+
+    <!-- application -->
+    <script type="text/javascript" src="lib/js/app.js"></script>
+
+    <!-- Services -->
+    <script type="text/javascript" src="lib/service/loginService.js"></script>
+
+    <!-- Controller -->
+    <script type="text/javascript" src="lib/controller/loginController.js"></script>
+
+</html>

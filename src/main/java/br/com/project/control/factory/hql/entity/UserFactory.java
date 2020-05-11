@@ -24,20 +24,20 @@ public class UserFactory extends ObjMapper {
 
     public UserFactory(String userStr) throws GlobalException {
 
-        int tipo = 0;
+        int type = 0;
         try {
 
             objNode = getObject().readValue(userStr, ObjectNode.class);
             if (objNode != null)
-                tipo = 1;
+                type = 1;
                         //objNode.get("type").asInt(); ADM
             else
                 throw new GlobalException(
                         "Falha ao receber o atributo tipo de Usuario");
 
-            if (tipo != 0) {
+            if (type != 0) {
 
-                this.userClass = USER_CLASS.get(tipo);
+                this.userClass = USER_CLASS.get(type);
 
                 if (this.userClass != null) {
                     User obj = (User) getObject().readValue(userStr,
@@ -51,8 +51,8 @@ public class UserFactory extends ObjMapper {
         }
     }
 
-    public UserFactory(int tipo){
-        this.userClass = USER_CLASS.get(tipo);
+    public UserFactory(int type){
+        this.userClass = USER_CLASS.get(type);
     }
 
     public List<User> getList() {

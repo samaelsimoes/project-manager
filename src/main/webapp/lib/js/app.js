@@ -15,7 +15,7 @@ app.config(function($routeProvider, $locationProvider){
     $routeProvider
 
         .when('/login', {
-            templateUrl: './index.html',
+            templateUrl: '/project-control/index.html',
             controller: 'LoginController',
         })
 
@@ -23,3 +23,6 @@ app.config(function($routeProvider, $locationProvider){
             redirectTo: '/login'
         });
 });
+
+
+

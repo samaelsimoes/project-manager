@@ -21,5 +21,4 @@ public class UserDAO extends OperationsDAO<User> {
     public UserDAO(HqlFactoryList<User> hqlFactoryList) {
         this.hqlFactoryList = hqlFactoryList;
     }
-
 }

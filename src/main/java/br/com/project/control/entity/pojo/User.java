@@ -19,7 +19,8 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String login;
+    private String user;
+
 
     public int getId() {
         return id;
@@ -69,11 +70,11 @@ public class User {
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUser() {
+        return user;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(String user) {
+        this.user = user;
     }
 }

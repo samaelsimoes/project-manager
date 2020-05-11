@@ -13,16 +13,16 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
 
     protected T entity;
     protected int num;
-    protected List<String> valores = new ArrayList<String>();
-    protected List<String> campos = new ArrayList<String>();
+    protected List<String> values = new ArrayList<String>();
+    protected List<String> fields = new ArrayList<String>();
     protected List<Integer> nums = new ArrayList<Integer>();
-    protected List<HOperator> operacoes = new ArrayList<HOperator>();
+    protected List<HOperator> operations = new ArrayList<HOperator>();
     protected HqlFactoryList<T> hqlFactoryList;
-    protected List<T> listaT = new ArrayList<T>();
-    protected List<String> listaStr = new ArrayList<String>();
-    protected HOperator operacao;
-    protected String campo;
-    protected String valor;
+    protected List<T> listT = new ArrayList<T>();
+    protected List<String> listStr = new ArrayList<String>();
+    protected HOperator operation;
+    protected String field;
+    protected String value;
     protected int count = 0;
     protected String select = null;
     protected String queryStr=null;
@@ -43,15 +43,15 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
     }
 
 
-    public OperationsDAO(String campo, HOperator operacao, String valor){
-        this.campo = campo;
-        this.operacao = operacao;
-        this.valor = valor;
+    public OperationsDAO(String field, HOperator operation, String value){
+        this.field = field;
+        this.operation = operation;
+        this.value = value;
     }
 
-    public OperationsDAO(String campo, HOperator operacao, int num){
-        this.campo = campo;
-        this.operacao = operacao;
+    public OperationsDAO(String field, HOperator operation, int num){
+        this.field = field;
+        this.operation = operation;
         this.num = num;
     }
 
@@ -65,30 +65,30 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
         em.getTransaction().commit();
     }
 
-    public void setFindParams(String campo, HOperator operacao, List<String> listaString){
-        this.campos.add(campo);
-        this.operacoes.add(operacao);
-        this.listaStr = listaString;
+    public void setFindParams(String field, HOperator operation, List<String> listString){
+        this.fields.add(field);
+        this.operations.add(operation);
+        this.listStr = listString;
     }
 
-    public void setFindParams(String campo, HOperator operacao, String valor){
-        this.campos.add(campo);
-        this.operacoes.add(operacao);
-        this.valores.add(valor);
+    public void setFindParams(String field, HOperator operation, String value){
+        this.fields.add(field);
+        this.operations.add(operation);
+        this.values.add(value);
     }
 
-    public void setFindParams(String campo, HOperator operacao, int num){
-        this.campos.add(campo);
-        this.operacoes.add(operacao);
+    public void setFindParams(String field, HOperator operation, int num){
+        this.fields.add(field);
+        this.operations.add(operation);
         this.nums.add(num);
     }
 
     public void getSelectString()throws GlobalException {
-        if((!this.nums.isEmpty() || this.nums != null) && (this.valores.isEmpty() || this.valores == null))
-            this.queryOp = this.hqlFactoryList.getRawOperationQuery(this.operacoes.get(count), this.nums.get(count));
-        if((this.nums.isEmpty() || this.nums == null) && (!this.valores.isEmpty() || this.valores != null))
-            this.queryOp = this.hqlFactoryList.getRawOperationQuery(this.operacoes.get(count), this.valores.get(count));
-        this.select = this.hqlFactoryList.getSelect(getEntityName(), this.campos.get(0))+queryOp;
+        if((!this.nums.isEmpty() || this.nums != null) && (this.values.isEmpty() || this.values == null))
+            this.queryOp = this.hqlFactoryList.getRawOperationQuery(this.operations.get(count), this.nums.get(count));
+        if((this.nums.isEmpty() || this.nums == null) && (!this.values.isEmpty() || this.values != null))
+            this.queryOp = this.hqlFactoryList.getRawOperationQuery(this.operations.get(count), this.values.get(count));
+        this.select = this.hqlFactoryList.getSelect(getEntityName(), this.fields.get(0))+queryOp;
         this.count++;
     }
 
@@ -114,10 +114,10 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
     }
 
     public void setAnd() throws GlobalException{
-        if((!this.nums.isEmpty() || this.nums != null) && (this.valores.isEmpty() || this.valores == null))
-            this.queryStr += hqlFactoryList.getAnd(this.campos.get(count),this.operacoes.get(count), this.nums.get(count));
-        if((this.nums.isEmpty() || this.nums == null) && (!this.valores.isEmpty() || this.valores != null))
-            this.queryStr += hqlFactoryList.getAnd(this.campos.get(count),this.operacoes.get(count), this.valores.get(count));
+        if((!this.nums.isEmpty() || this.nums != null) && (this.values.isEmpty() || this.values == null))
+            this.queryStr += hqlFactoryList.getAnd(this.fields.get(count),this.operations.get(count), this.nums.get(count));
+        if((this.nums.isEmpty() || this.nums == null) && (!this.values.isEmpty() || this.values != null))
+            this.queryStr += hqlFactoryList.getAnd(this.fields.get(count),this.operations.get(count), this.values.get(count));
 
     }
 
@@ -127,20 +127,20 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
         return list;
     }
 
-    public List<T> findGeneric(String campo, HOperator operacao, String valor) throws GlobalException{
+    public List<T> findGeneric(String field, HOperator operation, String value) throws GlobalException{
         HqlFactory hqlFactory = new HqlFactory();
-        this.select = hqlFactory.getSelect(getEntityName(), campo);
-        this.queryStr = hqlFactory.getQuery(select, operacao, valor);
+        this.select = hqlFactory.getSelect(getEntityName(), field);
+        this.queryStr = hqlFactory.getQuery(select, operation, value);
         this.query = super.getQuery(queryStr);
         @SuppressWarnings("unchecked")
         List<T> list = this.query.getResultList();
         return list;
     }
 
-    public T findGenericObj(String campo, HOperator operacao, String valor) throws GlobalException{
+    public T findGenericObj(String field, HOperator operation, String value) throws GlobalException{
         HqlFactory hqlFactory = new HqlFactory();
-        this.select = hqlFactory.getSelect(getEntityName(), campo);
-        this.queryStr = hqlFactory.getQuery(select, operacao, valor);
+        this.select = hqlFactory.getSelect(getEntityName(), field);
+        this.queryStr = hqlFactory.getQuery(select, operation, value);
         this.query = super.getQuery(queryStr);
         @SuppressWarnings("unchecked")
         List<T> list = this.query.getResultList();
@@ -151,13 +151,13 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
     public List<T> findGenericAND() throws GlobalException{
         int contIt = 1;
         getSelectString();
-        int listaSize = this.valores.size()-1;
+        int listaSize = this.values.size()-1;
         this.queryStr = this.select;
         while(contIt <= listaSize){
 
             if(contIt <= listaSize)
                 this.queryStr+=" AND ";
-            this.queryStr+=this.campos.get(contIt)+" = '"+this.valores.get(contIt)+"'";
+            this.queryStr+=this.fields.get(contIt)+" = '"+this.values.get(contIt)+"'";
             contIt++;
 
         }
@@ -167,10 +167,10 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
         return list;
     }
 
-    public List<T> findGenericInt(String campo, HOperator operacao, int valor) throws GlobalException{
+    public List<T> findGenericInt(String field, HOperator operation, int value) throws GlobalException{
         HqlFactory hqlFactory = new HqlFactory();
-        String select = hqlFactory.getSelect(getEntityName(), campo);
-        String queryStr = hqlFactory.getQuery(select, operacao, valor);
+        String select = hqlFactory.getSelect(getEntityName(), field);
+        String queryStr = hqlFactory.getQuery(select, operation, value);
         Query query = super.getQuery(queryStr);
         @SuppressWarnings("unchecked")
         List<T> list = query.getResultList();
@@ -180,9 +180,9 @@ public class OperationsDAO<T> extends ConnectionDAO<T>{
     public List<T> findGenericBetween() throws GlobalException{
         int contIt = 0;
         getSelectString();
-        int listaSize = this.listaStr.size();
-        this.queryStr = this.select+" AND "+this.campos.get(this.count)+" BETWEEN ";
-        for(String val: this.listaStr){
+        int listaSize = this.listStr.size();
+        this.queryStr = this.select+" AND "+this.fields.get(this.count)+" BETWEEN ";
+        for(String val: this.listStr){
             this.queryStr+="'"+val+"'";
             contIt++;
             if(contIt < listaSize)

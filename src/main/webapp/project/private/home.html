@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="appHome">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Page Title</title>
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../lib/node_modules/angular-toastr/dist/angular-toastr.css">
+
+        <script src="https://kit.fontawesome.com/23ed645b69.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default no-margin">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header fixed-brand">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
+                    <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                </button>
+                <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i> Controle de projetos</a>
+            </div><!-- navbar-header-->
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active" ><button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></button></li>
+                </ul>
+            </div><!-- bs-example-navbar-collapse-1 -->
+        </nav>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                    <li class="active">
+                        <a href="#">
+                            <span class="fa-stack fa-lg pull-left">
+                                <i class="fa fa-dashboard fa-stack-1x"></i>
+                            </span>Gerencial
+                        </a>
+                        <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                            <li ng-class="{active: activetab == '#!/projectGrid'}" >
+                                <a  class="dropdown-button active" href="#!/projectGrid" data-activates="dropdown1">Projects</a>
+                            </li>
+                            <li>
+                                <a href="#">Activities</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-controller="LogoutController">
+                        <a ng-submit="reload()" class="dropdown-button active" href="" data-activates="dropdown1" ng-click="reload()">
+                            <span class="fa-stack fa-lg pull-left">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid xyz">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="index">
+                                <div ng-view> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!-- Libraris node modules -->
+    <script type="text/javascript" src="../../lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="../../lib/node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="../../lib/bower_components/ngMask/dist/ngMask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <script type="text/javascript" src="../../lib/node_modules/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="../../lib/node_modules/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="../../lib/node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="../../lib/node_modules/angular-touch/angular-touch.js"></script>
+    <script type="text/javascript" src="../../lib/node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="../../lib/node_modules/angular-ui-grid/ui-grid.js"></script>
+    <!--<script type="text/javascript" src="../../lib/node_modules/angular-toastr/dist/angular-toastr.js"></script> -->
+    <script src="../../lib/js/angular-toastr.js"></script>
+
+    <script type="text/javascript" src="../../lib/node_modules/angular-input-masks/releases/angular-input-masks-standalone.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- application -->
+    <script type="text/javascript" src="app.js"></script>
+    <script src="grid/projectGridControl.js"></script>
+    <script type="text/javascript" src="js/logoutController.js"></script>
+
+    <!--  controllers -->
+    <script type="text/javascript"  src="grid/projectGridControl.js"></script>
+    <script src="grid/activityControl.js"></script>
+
+    <!-- Services -->
+    <script src="service/ProjectService.js"></script>
+    <script src="service/LogoutService.js"></script>
+    <script src="service/activityService.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

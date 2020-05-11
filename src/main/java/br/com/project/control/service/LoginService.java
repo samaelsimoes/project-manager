@@ -31,7 +31,7 @@ public class LoginService {
             HqlFactoryList<User> hqlFactoryList = new HqlFactoryList<User>();
             UserDAO userDAO = new UserDAO(hqlFactoryList);
             userDAO.setFindParams("user", HOperator.EQUALS,
-                    credenciais.get(0));
+                    credenciais.get(1));
             userDAO.setFindParams("password", HOperator.EQUALS, hashd5);
             userDAO.setFindParams("status", HOperator.EQUALS, "1");
             userDAO.setAnd();
