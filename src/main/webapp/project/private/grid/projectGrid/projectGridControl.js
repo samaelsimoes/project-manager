@@ -7,7 +7,7 @@ app.controller('ProjectGridControl', ['$scope', '$http', '$log','$rootScope', '$
     function($scope, $rootScope, $location, $http, $log, toastr, ProjectService, timeout, ProjectServiceGeneric) {
 
     $scope.project = []; // Model da lista de gêneros
-
+    $scope.value = 0;
     $scope.formateDateTable = function(date) {
         let data = moment(date, "YYYY-MM-DD HH:mm:ss");
         return data.format("DD/MM/YYYY");

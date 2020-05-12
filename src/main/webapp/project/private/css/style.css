@@ -165,3 +165,20 @@
 .cusstom-margin {
     margin-bottom: 10px;
 }
+
+.a.navbar-brand {
+    padding: 15px;
+}
+.span.fa-stack.fa-lg.pull-left{
+   padding: 7px;
+}
+.navbar-brand{
+    height: 30px;
+}
+.custom-icons {
+    padding: 5px;
+    margin-right: -7px;
+}
+.custom-logout {
+    padding-top: 14px;
+}

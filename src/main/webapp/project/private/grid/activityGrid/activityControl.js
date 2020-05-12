@@ -4,6 +4,7 @@ function( $scope, $rootScope, $location, $http, $log, toastr, ActivityService, t
 
     $scope.activity = []; // Model da lista de gêneros
     // obs eu poderia criar _self para o lugar do scope, não é o momento de alterar pois todo projeto usei scope mesmo
+    $scope.value = 0;
 
     $scope.formateDateTable = function(date) {
         let data = moment(date, "YYYY-MM-DD HH:mm:ss");
@@ -23,7 +24,9 @@ function( $scope, $rootScope, $location, $http, $log, toastr, ActivityService, t
                         id_activity: activity[i].id,
                         name_activity: activity[i].nameActivity,
                         date_initial: $scope.formateDateTable(activity[i].dateInitial),
-                        date_end: $scope.formateDateTable(activity[i].dateFinal)
+                        date_end: $scope.formateDateTable(activity[i].dateFinal),
+                        finished: activity[i].finished == 0 ? "No" : "Yes",
+                        id_project: activity[i].idProject
                     }
                     arrayTable.push(tableActivity);
                 }
@@ -74,7 +77,7 @@ function( $scope, $rootScope, $location, $http, $log, toastr, ActivityService, t
             dateFinal:  $scope.formateDateBackEnd(e.finalDate + " " + "00:00:00"),
             nameActivity: e.description,
             type: 0,
-            finished: false,
+            finished: 0,
             idProject: e.project.id
         }
 
