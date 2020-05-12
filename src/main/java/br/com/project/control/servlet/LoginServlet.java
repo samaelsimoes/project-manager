@@ -40,7 +40,6 @@ public class LoginServlet extends HttpServlet {
                 HttpSession sectionUser = request.getSession();
 
                 if (user != null) {
-
                     sectionUser.setAttribute("sectionuser", user);//setAtribute I'm putting my UserPojo user object in session
                     Cookie cookiettipo = new Cookie("type", String.valueOf(user.getType()));
                     Cookie cookieid = new Cookie("id", String.valueOf(user.getId()));
@@ -49,13 +48,12 @@ public class LoginServlet extends HttpServlet {
                     response.addCookie(cookiettipo);
                     response.addCookie(cookieid);
 
-                    msg.put("msg", " Login realizado com sucesso ! ");
+                    msg.put("msg", " Login successfully! ");
                     msg.put("acesso", url+ "/project/private/paginaInicial.html");
                     response.setStatus(HttpServletResponse.SC_OK);
                 } else {
-
                     sectionUser.invalidate();// invalid session
-                    msg.put("msg", "Login invalido");
+                    msg.put("msg", "Invalid login");
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     //Status code (403) indicating the server understood the request but refused to fulfill it.
                 }

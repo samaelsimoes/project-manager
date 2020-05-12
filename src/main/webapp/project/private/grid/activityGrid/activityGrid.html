@@ -1,0 +1,112 @@
+<div class="global-container" ng-controller="ActivityControl">
+    <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-left">Activity </h3>
+            <div class="card-text">
+                <div class="row">
+                    <div class="col">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn btn-success" data-toggle="modal" data-target="#addActivity">
+                            Add activity
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Activity:</th>
+                                <th scope="col">Date start:</th>
+                                <th scope="col">Date end: </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="a in tableActivitys | filter:f">
+                                <th scope="row">{{a.id_activity}}</th>
+                                <td>{{a.name_activity}}</td>
+                                <td>{{a.date_initial}}</td>
+                                <td>{{a.date_end}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal add activity -->
+<div class="modal fade" id="addActivity" tabindex="-1" role="dialog" aria-labelledby="addActivityTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document" ng-controller="ActivityControl">
+        <form name="activityForm" ng-submit="addActivity(activity)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addActivityTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row cusstom-margin">
+                        <div class="col cusstom-margin">
+                            <div class="form-group">
+                                <label for="initialDate">Date initial:</label>
+                                <input type="text" class="form-control form-control-sm validate"
+                                       ng-model="activity.dateInitial" mask='39/19/9999'
+                                       name='dateInitial' id="initialDate" required>
+
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="activityForm.dateInitial.$error.required">Required field!</span>
+                                <span class="help-block custom-fonts-alert" ng-show="activityForm.dateInitial.$error.maxlength">You can only enter a maximum of 10 characters!</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dateFinal">Date final:</label>
+
+                                <input type="text" class="form-control form-control-sm validate"
+                                       ng-model="activity.finalDate" mask='39/19/9999'
+                                       name='finalDate' id='dateFinal' required>
+
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="activityForm.finalDate.$error.required">Required field!</span>
+                                <span class="help-block custom-fonts-alert" ng-show="activityForm.finalDate.$error.maxlength">You can only enter a maximum of 10 characters!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="description">Example textarea</label>
+
+                                <textarea class="form-control"
+                                          name="description" id="description"
+                                          ng-model="activity.description" required rows="4"></textarea>
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="activityForm.description.$error.required">Required field!</span>
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="project">Select an option</label>
+                            <select class="form-control" id="project" name="project" ng-model="activity.project"
+                                    ng-options="project as project.label for project in projects track by project.id"
+                                    ng-model="project.activity">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input href="#!/activityGrid" type="submit" class="btn btn-primary"type="submit"
+                           name="action" ng-disabled="activityForm.$invalid" data-dismiss="modal"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../lib/bower_components/ngMask/dist/ngMask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

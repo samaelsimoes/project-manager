@@ -52,4 +52,13 @@
     <session-timeout>60</session-timeout>
   </session-config>
 
+  <filter>
+    <filter-name>FilterSection</filter-name>
+    <filter-class>br.com.project.control.filter.FilterSection</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FilterSection</filter-name>
+    <url-pattern>/project/private/*</url-pattern>
+  </filter-mapping>
+
 </web-app>

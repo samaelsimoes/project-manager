@@ -3,10 +3,13 @@
  * @author Samael Pereira Simões
  */
 
-app.factory('ProjectService', function($resource) {
+app.factory('ProjectServiceGeneric', function($resource) {
     return $resource('/project-control/rest/project/', null, {
-        query:{
-            method: 'POST',
+        update: {
+            method: 'PUT'
         },
+        remove: {
+            method: 'DELETE'
+        }
     });
 });

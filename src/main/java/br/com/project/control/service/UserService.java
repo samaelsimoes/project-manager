@@ -1,15 +1,13 @@
 package br.com.project.control.service;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import br.com.project.control.daoconnect.UserDAO;
 import br.com.project.control.entity.pojo.User;
 import br.com.project.control.exception.GlobalException;
-import br.com.project.control.interfaces.Service;
+import br.com.project.control.interfaces.UserServiceInterface;
 
-public class UserService implements Service<User> {
+public class UserService implements UserServiceInterface<User> {
 
     protected User User;
     protected List<User> Users;

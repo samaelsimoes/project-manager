@@ -7,7 +7,7 @@ app.controller('LogoutController', ['$scope', '$rootScope', '$location', 'toastr
     function( $scope,  $rootScope,  $location, toastr, LogoutService) {
 
         $rootScope.activetab = $location.path();
-        user={
+        user = {
             acao:"logout",
             idlogout:1
         };

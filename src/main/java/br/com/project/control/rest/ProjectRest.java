@@ -4,34 +4,33 @@ import br.com.project.control.entity.pojo.Activity;
 import br.com.project.control.entity.pojo.Project;
 import br.com.project.control.exception.GlobalException;
 import br.com.project.control.factory.hql.ObjMapper;
-import br.com.project.control.factory.hql.entity.ActivityFactory;
+import br.com.project.control.factory.hql.entity.ProjectFactory;
 import br.com.project.control.service.ActivityService;
+import br.com.project.control.service.ProjectService;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
+import javax.ws.rs.core.MediaType;
 
-import br.com.project.control.service.ProjectService;
-import com.google.gson.Gson;
 
-@Path("/activity")
-public class ActivityRest extends ObjMapper {
+@Path("/project")
+public class ProjectRest extends ObjMapper {
 
-    public ActivityRest() { }
+    public ProjectRest() { }
 
     @POST
     @Consumes("application/*")
-    public Response add(String activityStr) throws GlobalException, IOException {
+    public Response add(String projectStr) throws GlobalException, IOException {
         try {
-            if (activityStr != null && !activityStr.isEmpty()) {
-                Activity activity = new ActivityFactory(activityStr).getActivity();
+            if (projectStr != null && !projectStr.isEmpty()) {
+                Project project = new ProjectFactory(projectStr).getActivity();
 
-                if (activity != null) {
-                    new ActivityService(activity).add();
+                if (project != null) {
+                    new ProjectService(project).add();
                 } else {
-                    return this.buildResponse("no value was sent to the server");
+                    throw new GlobalException("no value was sent to the server");
                 }
             } else {
                 return this.buildResponse("no value was sent to the server");
@@ -50,11 +49,11 @@ public class ActivityRest extends ObjMapper {
 
         try {
             String resp = null;
-            List<Activity> activity = new ActivityService(str).searchActivity();
-            resp = getJson(activity);
+            List<Project> project = new ProjectService(str).searchProject();
+            resp = getJson(project);
 
-            return Response.ok( resp ,MediaType.APPLICATION_JSON).build();
-        } catch (Throwable e) {
+            return Response.ok( project ,MediaType.APPLICATION_JSON).build();
+        }  catch (Throwable e) {
             e.printStackTrace();
             throw new GlobalException("Erro ao fazer a consulta por nome");
         }

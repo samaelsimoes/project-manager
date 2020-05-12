@@ -46,10 +46,10 @@
                         </a>
                         <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                             <li ng-class="{active: activetab == '#!/projectGrid'}" >
-                                <a  class="dropdown-button active" href="#!/projectGrid" data-activates="dropdown1">Projects</a>
+                                <a class="dropdown-button active" href="#!/projectGrid" data-activates="dropdown1">Projects</a>
                             </li>
-                            <li>
-                                <a href="#">Activities</a>
+                            <li ng-class="{active: activetab == '#!/activityGrid'}">
+                                <a href="#!/activityGrid" data-activates="dropdown2">Activities</a>
                             </li>
                         </ul>
                     </li>
@@ -101,17 +101,19 @@
 
     <!-- application -->
     <script type="text/javascript" src="app.js"></script>
-    <script src="grid/projectGridControl.js"></script>
+    <script src="grid/projectGrid/projectGridControl.js"></script>
     <script type="text/javascript" src="js/logoutController.js"></script>
 
     <!--  controllers -->
-    <script type="text/javascript"  src="grid/projectGridControl.js"></script>
-    <script src="grid/activityControl.js"></script>
+    <script type="text/javascript"  src="grid/projectGrid/projectGridControl.js"></script>
+    <script src="grid/activityGrid/activityControl.js"></script>
 
     <!-- Services -->
     <script src="service/ProjectService.js"></script>
     <script src="service/LogoutService.js"></script>
     <script src="service/activityService.js"></script>
+    <script src="service/ProjectServiceGeneric.js"></script>
+    <script src="service/activityServiceGeneric.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

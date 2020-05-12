@@ -18,8 +18,12 @@ app.config(function($routeProvider, $locationProvider){
         templateUrl: '/home.html/',
     })
     .when('/projectGrid', {
-        templateUrl: 'grid/projectGrid.html',
+        templateUrl: 'grid/projectGrid/projectGrid.html',
         controller: 'ProjectGridControl',
+    })
+    .when('/activityGrid', {
+        templateUrl: 'grid/activityGrid/activityGrid.html',
+        controller: 'ActivityControl',
     })
     .when('/logout', {
         templateUrl: '../../../',

@@ -1,17 +1,39 @@
-<div class="global-container">
+<div class="global-container" ng-controller="ProjectGridControl">
     <div class="card login-form">
         <div class="card-body">
-            <h3 class="card-title text-left">Products </h3>
+            <h3 class="card-title text-left">Projects </h3>
             <div class="card-text">
                 <div class="row">
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn btn-success" data-toggle="modal" data-target="#addProducts">
-                            Add product
+                            projectStruct
                         </button>
                         <button type="button" class="btn btn btn-success" data-toggle="modal" data-target="#addActivity">
                             Add activity
                         </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Name Project:</th>
+                                <th scope="col">Date start:</th>
+                                <th scope="col">Date end: </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in tableProjects | filter:f">
+                                <th scope="row">{{p.id_product}}</th>
+                                <td>{{p.name_project}}</td>
+                                <td>{{p.date_initial}}</td>
+                                <td>{{p.date_end}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -35,7 +57,9 @@
                         <div class="col cusstom-margin">
                             <div class="form-group">
                                 <label for="initialDate">Date Initial:</label>
-                                <input type="text" class="form-control form-control-sm validate" ng-maxlength="10" ui-mask="99/99/9999" model-view-value="true" name='initialDate' id='initialDate' ng-model="project.initialDate" required>
+                                <input type="text" class="form-control form-control-sm validate" model-view-value="true"
+                                       name='initialDate' id='initialDate'
+                                       ng-model="project.initialDate" mask='39/19/9999' required>
 
                                 <span class="help-block custom-fonts-alert" ng-class="error" ng-show="projectForm.initialDate.$error.required">Required field!</span>
                                 <span class="help-block custom-fonts-alert" ng-show="projectForm.initialDate.$error.maxlength">You can only enter a maximum of 10 characters!</span>
@@ -44,7 +68,9 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="dateFinal">Date final:</label>
-                                <input type="text" class="form-control form-control-sm validate" ui-mask="99/99/9999" model-view-value="true" ng-maxlength="10" name='dateFinal' id='dateFinal' ng-model="project.dateFinal" required>
+                                <input type="text" class="form-control form-control-sm validate" mask='39/19/9999' model-view-value="true"
+                                       name='dateFinal' id='dateFinal'
+                                       ng-model="project.dateFinal" required>
 
                                 <span class="help-block custom-fonts-alert" ng-class="error" ng-show="projectForm.dateFinal.$error.required">Required field!</span>
                                 <span class="help-block custom-fonts-alert" ng-show="projectForm.dateFinal.$error.maxlength">You can only enter a maximum of 10 characters!</span>
@@ -55,15 +81,20 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                <label for="descriptionProject">Example textarea</label>
+
+                                <textarea class="form-control"
+                                          name="description" id="descriptionProject"
+                                          ng-model="project.descriptionProject" required rows="4"></textarea>
+                                <span class="help-block custom-fonts-alert" ng-class="error" ng-show="projectForm.descriptionProject.$error.required">Required field!</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <input href="#!/projectGrid" type="submit" class="btn btn-primary"type="submit"
+                           name="action" ng-disabled="projectForm.$invalid" data-dismiss="modal"/>
                 </div>
             </div>
         </form>
@@ -111,7 +142,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                <label for="description">Example textarea</label>
 
                                 <textarea class="form-control"
                                           name="description" id="description"
@@ -120,13 +151,20 @@
 
                             </div>
                         </div>
+                        <div class="col">
+                            <label for="project">Select an option</label>
+                            <select class="form-control" id="project" name="project" ng-model="activity.project"
+                                    ng-options="project as project.label for project in projects track by project.id"
+                                    ng-model="project.activity">
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary"type="submit"
-                            name="action" ng-disabled="activityForm.$invalid">Save changes</input>
+                    <button type="submit" class="btn btn-primary" type="submit"
+                            name="action" ng-disabled="activityForm.$invalid" data-dismiss="modal"></button>
                 </div>
             </div>
         </form>

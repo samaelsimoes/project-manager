@@ -1,5 +1,6 @@
 package br.com.project.control.entity.pojo;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
@@ -12,14 +13,22 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Activity {
+public class Project {
 
-    public String getNameActivity() {
-        return nameActivity;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nameProject;
+    protected Integer type;
 
-    public void setNameActivity(String nameActivity) {
-        this.nameActivity = nameActivity;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date dateInitial;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date dateFinal;
+
+    //Introducing the dummy constructor
+    public Project() {
     }
 
     public Integer getType() {
@@ -28,39 +37,6 @@ public class Activity {
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    public Integer getIdProject() {
-        return idProject;
-    }
-
-    public void setIdProject(Integer idProject) {
-        this.idProject = idProject;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nameActivity;
-    protected Integer type;
-    protected Integer idProject;
-    protected Boolean finished;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date dateInitial;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date dateFinal;
-
-    //Introducing the dummy constructor
-    public Activity() {
-    }
-
-    public Boolean getFinished() {
-        return finished;
-    }
-
-    public void setFinished(Boolean finished) {
-        this.finished = finished;
     }
 
     public int getId() {
@@ -85,5 +61,13 @@ public class Activity {
 
     public void setDateFinal(Date dateFinal) {
         this.dateFinal = dateFinal;
+    }
+
+    public String getNameProject() {
+        return nameProject;
+    }
+
+    public void setNameProject(String nameProject) {
+        this.nameProject = nameProject;
     }
 }
